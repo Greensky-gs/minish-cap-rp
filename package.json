@@ -1,0 +1,27 @@
+{
+  "name": "minish-cap-rp",
+  "version": "1.0.0",
+  "description": "a minish cap rp bot on discord",
+  "main": "dist/index.js",
+  "author": "Greensky <david.hesliere@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "discord.js": "^14.3.0",
+    "dotenv": "^16.0.2",
+    "eslint": "^8.23.0",
+    "fs": "^0.0.1-security",
+    "mysql": "^2.18.1",
+    "prettier": "^2.7.1",
+    "tsc": "^2.0.4",
+    "typescript": "^4.8.3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2"
+  },
+  "scripts": {
+    "build": "yarn tsc",
+    "start": "yarn node ."
+  }
+}
