@@ -17,9 +17,10 @@ export class RPGClient extends Client {
 	}
     start() {
         this.login(process.env.token);
+        this.loadModules();
     }
     loadModules() {
-        this.connectDb();
+        // this.connectDb();
         this.loadCommands();
         this.loadEvents();
     }
@@ -52,7 +53,7 @@ export class RPGClient extends Client {
     }
     loadEvents() {
         readdirSync(`./${this.#path}/events`).forEach((fileName) => {
-            const file: Event<keyof ClientEvents> = require(`../events/${fileName}`);
+            const file: Event<keyof ClientEvents> = require(`../events/${fileName}`).default;
 
             this.on(file.event, file.run);
         });

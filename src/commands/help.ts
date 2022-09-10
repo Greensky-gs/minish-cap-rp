@@ -1,5 +1,7 @@
-import { Message } from "discord.js";
+import { ActionRowBuilder, ActionRowComponentData, ButtonBuilder, ButtonStyle } from "discord.js";
 import { Command } from "../structures/Command";
+import { actionRow, basic } from "../utils/buttons";
+import { invite, support } from "../utils/data";
 import { classic } from "../utils/embeds";
 import { random } from "../utils/functions";
 
@@ -9,13 +11,14 @@ export default new Command({
     dm: true,
     needAccount: false,
     run: async({ interaction }) => {
-        const components = [];
-        if (random({ max: 10 }) === 5) components.push()
+        const components: ActionRowComponentData[] = [];
+        if (random({ max: 10 }) === 5) components.push(basic({ label: "Support", type: ButtonStyle.Link, url: support, customId: 'support' }));
+        if (random({ max: 10 }) === 5) components.push(basic({ label: 'Invitation', type: ButtonStyle.Link, url: invite, customId: 'invite' }));
 
         interaction.reply({ embeds: [ classic(interaction.user)
             .setTitle("Page d'aide")
             .setDescription(`Voici la page d'aide du bot.\nVous pouvez y trouver chaque commande.\n\n${interaction.client.commands.map((cmd) => `\`${cmd.name}\` ${cmd.description}`).join('\n')}`)
             .setColor('Orange')
-        ] });
+        ], components: [ actionRow(components) as ActionRowBuilder<ButtonBuilder> ] }).catch(() => {});
     }
 })
