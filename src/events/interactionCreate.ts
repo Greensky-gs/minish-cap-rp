@@ -14,7 +14,7 @@ export default new Event('interactionCreate', (inter) => {
 
         const run = () => {
             cmd.run({
-                args: interaction.options as unknown as CommandInteractionOptionResolver[],
+                args: interaction.options as CommandInteractionOptionResolver,
                 interaction,
                 client: interaction.client
             });

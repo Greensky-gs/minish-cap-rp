@@ -7,7 +7,7 @@ export class RPGInteraction extends CommandInteraction {
 }
 export type commandRunOptions = {
     interaction: RPGInteraction,
-    args: CommandInteractionOptionResolver[],
+    args: CommandInteractionOptionResolver,
     client: RPGClient
 };
 export type commandOptions = {

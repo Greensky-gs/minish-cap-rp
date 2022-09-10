@@ -1,0 +1,9 @@
+{
+    "intro": [
+        "{zelda} Bonjour Mr.Smith",
+        "{msmith} Bonjour princesse Zelda, que faites vous aussi loin du château ?",
+        "{zelda} Je suis venu chercher {username} pour aller à la fête des minish",
+        "{msmith} Il m'a bien aidé hier, il est en train de se reposer",
+        "{msmith} Je vais le réveiller. {username} !"
+    ]
+}
