@@ -7,16 +7,17 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "amethystjs": "^1.3.2",
     "discord.js": "^14.3.0",
     "dotenv": "^16.0.2",
     "eslint": "^8.23.0",
-    "fs": "^0.0.1-security",
     "mysql": "^2.18.1",
     "prettier": "^2.7.1",
     "tsc": "^2.0.4",
     "typescript": "^4.8.3"
   },
   "devDependencies": {
+    "@types/mysql": "^2.15.21",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2"
   },
