@@ -1,6 +1,7 @@
 import { AmethystClient } from 'amethystjs';
 import { Partials } from 'discord.js';
 import { config } from 'dotenv';
+import { Manager } from './managers/Manager';
 
 config();
 
@@ -31,3 +32,4 @@ client.start({
     loadEvents: true,
     loadPreconditions: true
 });
+export const GameMaster = new Manager(client);

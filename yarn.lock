@@ -366,6 +366,14 @@ chalk@^4.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+coins-manager@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/coins-manager/-/coins-manager-1.0.7.tgz#36e385f14f9223f01fe28cebefedc3268f76ee82"
+  integrity sha512-g1Qqj0P8wtOE9jzOSOWRjzXWBN/tUGsH2dbeuYVQsAyGc3NRP6/SrCYILhClAR3SJGBU4CJ0KdiC4GXKNfCK9Q==
+  dependencies:
+    "@types/mysql" "^2.15.21"
+    mysql "^2.18.1"
+
 color-convert@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-2.0.1.tgz#72d3a68d598c9bdb3af2ad1e84f21d896abd4de3"
