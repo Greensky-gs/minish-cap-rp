@@ -1,5 +1,5 @@
 import { createConnection } from 'mysql';
-import { DefaultQueryResult, QueryResult } from '../typings/database';
+import { DatabaseTables, DefaultQueryResult, QueryResult } from '../typings/database';
 
 const database = createConnection({
     host: process.env.DB_HOST,
@@ -19,5 +19,10 @@ export const query = <T = DefaultQueryResult>(request: string): Promise<QueryRes
 export const checkDatabase = async () => {
     await query(`SHOW TABLES`);
 
-    await query(``);
+    await query(
+        `CREATE TABLE IF NOT EXISTS ${DatabaseTables.Accounts} ( user_id VARCHAR(255) NOT NULL PRIMARY KEY, username VARCHAR(255) NOT NULL, cycle INTEGER(5) NOT NULL DEFAULT '1' , book INTEGER(5) NOT NULL DEFAULT '1', chapter INTEGER(5) NOT NULL DEFAULT '1', stats LONGTEXT, objectifs LONGTEXT )`
+    );
+};
+export const sqlise = (str: string) => {
+    return str.replace(/"/g, '\\"').replace(/;/g, '\\;');
 };

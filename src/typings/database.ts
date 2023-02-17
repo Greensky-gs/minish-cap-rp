@@ -17,7 +17,9 @@ export enum DatabaseTables {
 
 export type accountType<Raw = true> = {
     user_id: string;
+    book: number;
     chapter: number;
+    cycle: number;
     stats: Raw extends true ? string : stats;
     objectifs: Raw extends true ? string : objectif[];
     username: string;
