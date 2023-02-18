@@ -1,7 +1,7 @@
 
 # minish-cap-rp
 
- French RPG bot for The Legend of Zelda, The minish cap game
+ French RPG bot for [The Legend of Zelda, The minish cap](https://zelda.fandom.com/fr/wiki/The_Legend_of_Zelda_:_The_Minish_Cap) opus
 
 ## Sponsor
 
