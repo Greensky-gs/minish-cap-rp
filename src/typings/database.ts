@@ -1,4 +1,5 @@
-import { objectif, stats } from './utils';
+import { stats, inventory } from './game';
+import { objectif, objectifType } from './utils';
 
 export type DefaultQueryResult = {
     fieldCount: number;
@@ -21,6 +22,7 @@ export type accountType<Raw = true> = {
     chapter: number;
     cycle: number;
     stats: Raw extends true ? string : stats;
-    objectifs: Raw extends true ? string : objectif[];
+    objectifs: Raw extends true ? string : objectif<objectifType>[];
     username: string;
+    inventory: Raw extends true ? string : inventory;
 };

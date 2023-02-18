@@ -105,4 +105,9 @@ export class Item<Type extends ItemType = 'item'> {
     public get damages() {
         return this._damages;
     }
+    public get defaultValue() {
+        if (['arrows', 'bomb_count', 'mysterious_shells', 'bombs'].includes(this._item)) return 0;
+        if (['bomb_bag', 'rubisBag'].includes(this._item)) return 'petit';
+        return this._item === 'smith_sword';
+    }
 }

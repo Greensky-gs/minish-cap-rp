@@ -4,6 +4,7 @@ export type stats = {
     pvLoosed: number;
     pv: number;
     totalPv: number;
+    rubisFound: number;
 };
 export type inventory = {
     smith_sword: boolean;
@@ -21,7 +22,7 @@ export type inventory = {
     jumping_stick: boolean;
     bow: boolean;
     arrows: number;
-    light_bow: number;
+    light_bow: boolean;
     /**
      * Griffes de taupe
      */

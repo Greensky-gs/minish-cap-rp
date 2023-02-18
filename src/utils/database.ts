@@ -20,7 +20,7 @@ export const checkDatabase = async () => {
     await query(`SHOW TABLES`);
 
     await query(
-        `CREATE TABLE IF NOT EXISTS ${DatabaseTables.Accounts} ( user_id VARCHAR(255) NOT NULL PRIMARY KEY, username VARCHAR(255) NOT NULL, cycle INTEGER(5) NOT NULL DEFAULT '1' , book INTEGER(5) NOT NULL DEFAULT '1', chapter INTEGER(5) NOT NULL DEFAULT '1', stats LONGTEXT, objectifs LONGTEXT )`
+        `CREATE TABLE IF NOT EXISTS ${DatabaseTables.Accounts} ( user_id VARCHAR(255) NOT NULL PRIMARY KEY, username VARCHAR(255) NOT NULL, cycle INTEGER(5) NOT NULL DEFAULT '1' , book INTEGER(5) NOT NULL DEFAULT '1', chapter INTEGER(5) NOT NULL DEFAULT '1', stats LONGTEXT, objectifs LONGTEXT, inventory LONGTEXT )`
     );
 };
 export const sqlise = (str: string) => {
