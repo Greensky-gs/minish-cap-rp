@@ -1,3 +1,6 @@
+import ennemies from '../data/ennemies.json';
+import { emojiType, objectif, objectifType } from './utils';
+
 export type size = 'petit' | 'moyen' | 'grand';
 export type stats = {
     monsterKilled: number;
@@ -38,3 +41,33 @@ export type inventory = {
     bombs: boolean;
 };
 export type item = keyof inventory;
+export type ennemyRarity = 'common' | 'uncommon' | 'rare' | 'spawnonly' | 'boss';
+export type ennemy = {
+    name: string;
+    id: keyof typeof ennemies;
+    damages: {
+        max: number;
+        min: number;
+        average: number;
+    };
+    protection: {
+        min: number;
+        max: number;
+        average: number;
+        /**
+         * Tout les `insensibleCycle` tours, l'ennemi sera insensible aux dégâts
+         * Si la valeur est configurée sur 0, l'ennemi ne sera jamais insensible
+         */
+        insensibleCycle: number;
+        emoji?: emojiType;
+        rarity: ennemyRarity;
+    };
+};
+export type chapter = {
+    name: string;
+    resume: string;
+    number: number;
+    emoji?: emojiType;
+    objectifs: objectif<objectifType>[];
+    boss: keyof typeof ennemies;
+};
