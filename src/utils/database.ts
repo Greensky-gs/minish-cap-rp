@@ -1,5 +1,7 @@
 import { createConnection } from 'mysql';
 import { DatabaseTables, DefaultQueryResult, QueryResult } from '../typings/database';
+import { config } from 'dotenv';
+config();
 
 export const database = createConnection({
     host: process.env.DB_HOST,

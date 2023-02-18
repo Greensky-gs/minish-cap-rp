@@ -3,6 +3,7 @@ import { DatabaseTables, accountType } from '../typings/database';
 import { query, sqlise } from '../utils/database';
 import items from '../data/items';
 import { inventory, item } from '../typings/game';
+import { objectif } from '../utils/objectif';
 
 export class AccountsManager {
     private cache: Collection<string, accountType<false>> = new Collection();
@@ -33,7 +34,7 @@ export class AccountsManager {
                 rubisFound: 0
             },
             username: options.username,
-            objectifs: []
+            objectifs: objectif('1', '1')
         };
         this.cache.set(user_id, data);
 

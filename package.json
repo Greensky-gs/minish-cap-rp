@@ -27,6 +27,7 @@
   },
   "scripts": {
     "build": "yarn tsc",
-    "start": "yarn node ."
+    "start": "yarn node .",
+    "launch": "yarn install && yarn build && yarn start"
   }
 }
