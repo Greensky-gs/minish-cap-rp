@@ -6,28 +6,40 @@ import { emoji as Emoji } from '../utils/utils';
 
 export type ItemType = 'weapon' | 'item' | 'protection';
 
+type extraDamages<AllNull extends boolean = false> = {
+    max: If<AllNull, null, number>;
+    min: If<AllNull, null, number>;
+    average: If<AllNull, null, number>;
+};
+
+type extraProtection<
+    AllNull extends boolean = false,
+    Number = If<AllNull, null, number>,
+    Boolean = If<AllNull, null, boolean>
+> = {
+    max: Number;
+    min: Number;
+    average: Number;
+    sendBack: Boolean;
+    /**
+     * Frequence entre 0 et 1
+     */
+    sendBackFrequence: Number;
+    /**
+     * Fréquence entre 0 et 1
+     */
+    fullProtectionFrequence: Number;
+};
+
 type Extra<
     T extends ItemType,
     Weapon extends boolean = T extends 'weapon' ? true : false,
     Protection extends boolean = T extends 'protection' ? true : false
-> = If<Weapon, { damages: { max: number; min: number; average: number } }, {}> &
+> = If<Weapon, { damages: extraDamages<false> }, {}> &
     If<
         Protection,
         {
-            protection: {
-                max: number;
-                min: number;
-                average: number;
-                sendBack: boolean;
-                /**
-                 * Frequence entre 0 et 1
-                 */
-                sendBackFrequence: number;
-                /**
-                 * Fréquence entre 0 et 1
-                 */
-                fullProtectionFrequence: number;
-            };
+            protection: extraProtection<false>;
         },
         {}
     >;
@@ -36,8 +48,9 @@ export class Item<Type extends ItemType = 'item'> {
     private _emojiName: emojiType | undefined;
     private _emoji: string | undefined;
     private _name: string;
-    private _extra: Extra<Type>;
     private _type: Type;
+    private _damages: extraDamages<Type extends 'weapon' ? true : false>;
+    private _protection: Type extends 'protection' ? extraProtection<false> : extraProtection<true>;
 
     constructor(
         type: Type,
@@ -53,19 +66,20 @@ export class Item<Type extends ItemType = 'item'> {
         }
         const over = extra as any;
         if (over?.damages) {
-            (this._extra as any).damages = {
+            this._damages = {
                 average: over.damages.average,
                 max: over.damages.max,
                 min: over.damages.min
             };
         }
         if (over?.protection) {
-            (this._extra as any).protection = {
+            this._protection = {
                 average: over.protection.average,
                 max: over.protection.max,
                 min: over.protection.min,
                 sendBack: over.protection.sendBack,
-                sendBackFrequence: over.protection.sendBackFrequence
+                sendBackFrequence: over.protection.sendBackFrequence,
+                fullProtectionFrequence: over.protection.fullProtectionFrequence
             };
         }
     }
@@ -85,7 +99,10 @@ export class Item<Type extends ItemType = 'item'> {
     public get type() {
         return this._type;
     }
-    public get extra() {
-        return this._extra;
+    public get protection() {
+        return this._protection;
+    }
+    public get damages() {
+        return this._damages;
     }
 }
