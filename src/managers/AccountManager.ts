@@ -31,7 +31,8 @@ export class AccountsManager {
                 pv: 6,
                 pvLoosed: 0,
                 totalPv: 6,
-                rubisFound: 0
+                rubisFound: 0,
+                heartQuarters: 0
             },
             username: options.username,
             objectifs: objectif('1', '1')
@@ -50,17 +51,69 @@ export class AccountsManager {
 
         return data;
     }
+    public addHeartQuarter(user_id: string) {
+        if (!this.exists(user_id)) return false;
+
+        const data = this.user(user_id);
+        data.stats.heartQuarters++;
+        if (data.stats.heartQuarters === 4) {
+            data.stats.heartQuarters = 0;
+            data.stats.totalPv += 4;
+            data.stats.pv = data.stats.totalPv;
+        }
+
+        this.cache.set(user_id, data);
+        this.save(user_id);
+    }
+    private save(user_id: string, existed?: boolean) {
+        const data = this.user(user_id);
+        if (existed === false) {
+            return query(
+                `INSERT INTO ${
+                    DatabaseTables.Accounts
+                } ( user_id, username, book, chapter, cycle, inventory, stats, objectifs ) VALUES ("${user_id}", "${sqlise(
+                    data.username
+                )}", "${data.book}", "${data.chapter}", "${data.cycle}", '${JSON.stringify(
+                    data.inventory
+                )}', '${JSON.stringify(data.stats)}', '${JSON.stringify(data.objectifs)}')`
+            );
+        } else {
+            return query(
+                `UPDATE ${DatabaseTables.Accounts} SET cycle="${data.cycle}", username="${
+                    data.username
+                }", stats='${JSON.stringify(data.stats)}', book='${data.book}', chapter="${
+                    data.chapter
+                }", inventory='${JSON.stringify(data.inventory)}', objectifs='${JSON.stringify(
+                    data.objectifs
+                )}' WHERE user_id='${user_id}'`
+            );
+        }
+    }
+    public addLife(user_id: string, pv: number) {
+        if (!this.exists(user_id)) return false;
+
+        const data = this.user(user_id);
+        data.stats.pv += pv;
+        if (data.stats.pv > data.stats.totalPv) data.stats.pv = data.stats.totalPv;
+
+        this.cache.set(user_id, data);
+        this.save(user_id);
+
+        return true;
+    }
     public removeLife(user_id: string, pv: number) {
         if (!this.exists(user_id)) return false;
 
         const data = this.user(user_id);
         data.stats.pv -= pv;
+        data.stats.pvLoosed += pv;
 
         if (data.stats.pv === 0) {
             this.endGame(user_id);
             return 'dead';
         }
-        query(`UPDATE stats SET '${JSON.stringify(data.stats)}' WHERE user_id='${user_id}'`);
+        this.cache.set(user_id, data);
+        this.save(user_id);
     }
 
     public endGame(user_id: string) {
