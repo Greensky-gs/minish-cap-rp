@@ -1,1 +1,54 @@
-{}
+{
+    "octorock": {
+        "name": "octorock",
+        "id": "octorock_1",
+        "damages": {
+            "max": 1,
+            "min": 0.5,
+            "average": 1
+        },
+        "protection": {
+            "pv": 1,
+            "min": 0,
+            "max": 0,
+            "average": 0,
+            "insensibleCycle": 0
+        },
+        "rarity": "common",
+        "emoji": "octorock"
+    },
+    "blobVert": {
+        "name": "blob vert",
+        "id": "blob_vert_common",
+        "damages": {
+            "max": 1,
+            "min": 0.5,
+            "average": 1
+        },
+        "protection": {
+            "pv": 3,
+            "min": 0,
+            "max": 0,
+            "average": 0,
+            "insensibleCycle": 0
+        },
+        "rarity": "uncommon"
+    },
+    "blobVertBoss": {
+        "name": "blob vert géant",
+        "id": "blob_vert_boss",
+        "damages": {
+            "max": 3,
+            "min": 1,
+            "average": 2
+        },
+        "protection": {
+            "pv": 20,
+            "min": 1,
+            "max": 2,
+            "average": 1,
+            "insensibleCycle": 0
+        },
+        "rarity": "boss"
+    }
+}

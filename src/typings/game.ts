@@ -8,6 +8,7 @@ export type stats = {
     pv: number;
     totalPv: number;
     rubisFound: number;
+    heartQuarters: number;
 };
 export type inventory = {
     smith_sword: boolean;
@@ -44,13 +45,14 @@ export type item = keyof inventory;
 export type ennemyRarity = 'common' | 'uncommon' | 'rare' | 'spawnonly' | 'boss';
 export type ennemy = {
     name: string;
-    id: keyof typeof ennemies;
+    id: string;
     damages: {
         max: number;
         min: number;
         average: number;
     };
     protection: {
+        pv: number;
         min: number;
         max: number;
         average: number;
@@ -59,9 +61,9 @@ export type ennemy = {
          * Si la valeur est configurée sur 0, l'ennemi ne sera jamais insensible
          */
         insensibleCycle: number;
-        emoji?: emojiType;
-        rarity: ennemyRarity;
     };
+    rarity: ennemyRarity;
+    emoji?: emojiType;
 };
 export type chapter = {
     name: string;
